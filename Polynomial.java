@@ -2,11 +2,11 @@ public class Polynomial {
     private double[] terms;
 
     public Polynomial() {
-        terms = new double[]{0}; // Polynomial is 0
+        terms = new double[]{0};
     }
 
     public Polynomial(double[] terms) {
-        this.terms = terms.clone(); // Store a copy of the array
+        this.terms = terms.clone();
     }
 
     public Polynomial add(Polynomial other) {
