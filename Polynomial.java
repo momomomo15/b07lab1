@@ -1,41 +1,36 @@
 public class Polynomial {
-    private double[] coefficients;
+    private double[] terms;
 
-    // No-argument constructor
     public Polynomial() {
-        coefficients = new double[]{0}; // Polynomial is 0
+        terms = new double[]{0}; // Polynomial is 0
     }
 
-    // Constructor that takes an array of coefficients
-    public Polynomial(double[] coefficients) {
-        this.coefficients = coefficients.clone(); // Store a copy of the array
+    public Polynomial(double[] terms) {
+        this.terms = terms.clone(); // Store a copy of the array
     }
 
-    // Method to add two polynomials
     public Polynomial add(Polynomial other) {
-        int maxLength = Math.max(this.coefficients.length, other.coefficients.length);
-        double[] result = new double[maxLength];
+        int maxDegree = Math.max(this.terms.length, other.terms.length);
+        double[] sum = new double[maxDegree];
 
-        for (int i = 0; i < maxLength; i++) {
-            double thisCoeff = (i < this.coefficients.length) ? this.coefficients[i] : 0;
-            double otherCoeff = (i < other.coefficients.length) ? other.coefficients[i] : 0;
-            result[i] = thisCoeff + otherCoeff;
+        for (int i = 0; i < maxDegree; i++) {
+            double thisTerm = (i < this.terms.length) ? this.terms[i] : 0;
+            double otherTerm = (i < other.terms.length) ? other.terms[i] : 0;
+            sum[i] = thisTerm + otherTerm;
         }
 
-        return new Polynomial(result);
+        return new Polynomial(sum);
     }
 
-    // Method to evaluate the polynomial at a given x value
-    public double evaluate(double x) {
+    public double evaluate(double value) {
         double result = 0;
-        for (int i = 0; i < coefficients.length; i++) {
-            result += coefficients[i] * Math.pow(x, i);
+        for (int i = 0; i < terms.length; i++) {
+            result += terms[i] * Math.pow(value, i);
         }
         return result;
     }
 
-    // Method to check if a value is a root of the polynomial
-    public boolean hasRoot(double x) {
-        return evaluate(x) == 0;
+    public boolean hasRoot(double value) {
+        return evaluate(value) == 0;
     }
 }
